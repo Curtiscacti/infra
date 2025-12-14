@@ -1,0 +1,48 @@
+# Argo CD Server configuration
+server:
+  # Allow HTTP internally (Tunnel terminates HTTPS)
+  extraArgs:
+    - --insecure
+
+  # Image configuration
+  image:
+    repository: quay.io/argoproj/argocd
+    tag: 2.8.6
+    pullPolicy: IfNotPresent
+
+  # Optional root path if using subpaths
+  # extraArgs:
+  #   - --root-path /
+
+# Service configuration (internal only)
+service:
+  type: ClusterIP
+  port: 80
+
+# Replica count
+replicaCount: 1
+
+# Optional resource requests/limits
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+# Ingress is disabled because Cloudflare Tunnel handles routing
+ingress:
+  enabled: false
+
+# Dex / SSO configuration (optional)
+# dex:
+#   enabled: true
+#   config:
+#     connectors: []
+
+# Optional: persistence for repo server / database
+# persistence:
+#   enabled: true
+#   storageClass: standard
+#   size: 1Gi

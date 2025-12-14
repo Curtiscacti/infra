@@ -1,0 +1,36 @@
+replicaCount: 1
+
+image:
+  repository: cloudflare/cloudflared
+  tag: latest
+  pullPolicy: IfNotPresent
+
+tunnel:
+  id: 86d372da-84e0-4a72-a13b-4933565208d9
+  credentialsSecretName: cloudflared-creds
+
+ingress:
+  # Argo CD
+  - hostname: argocd.curtfamily.org
+    service: argocd-server.argocd.svc.cluster.local
+    port: 80
+
+server:
+  # Accept HTTP internally (Cloudflare will handle HTTPS)
+  extraArgs:
+    - --insecure
+
+  # Optional: adjust root path if needed (mostly for subpaths)
+  # - --root-path /
+
+  # If using Dex SSO later, specify external Dex server
+  # - --dex-server https://argocd.yourdomain.com/dex
+
+  # Disable internal TLS (optional if previously enabled)
+  tls:
+    enabled: false
+
+  # Add more later
+  # - hostname: grafana.yourdomain.com
+  #   service: grafana.monitoring.svc.cluster.local
+  #   port: 3000

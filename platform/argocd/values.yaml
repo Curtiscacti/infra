@@ -3,7 +3,7 @@ server:
   # Allow HTTP internally (Tunnel terminates HTTPS)
   extraArgs:
     - --insecure
-
+  replicaCount: 2
   # Image configuration
   image:
     repository: quay.io/argoproj/argocd
@@ -18,9 +18,6 @@ server:
 service:
   type: ClusterIP
   port: 80
-
-# Replica count
-replicaCount: 2
 
 # Optional resource requests/limits
 resources:

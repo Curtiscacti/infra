@@ -7,9 +7,7 @@ persistence:
   enabled: true
   size: 5Gi
 ingress:
-  enabled: true
-  hosts:
-    - grafana.curtfamily.org
+  enabled: false
 image:
   repository: grafana/grafana
   tag: latest

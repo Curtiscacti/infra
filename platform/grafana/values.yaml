@@ -10,3 +10,7 @@ ingress:
   enabled: true
   hosts:
     - grafana.curtfamily.org
+image:
+  repository: grafana/grafana
+  tag: latest
+  pullPolicy: IfNotPresent

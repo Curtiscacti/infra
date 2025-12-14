@@ -4,10 +4,10 @@ adminPassword:
   existingSecret: grafana-admin
   key: admin-password
 persistence:
-  enabled: true
+  enabled: false
   size: 5Gi
 ingress:
-  enabled: true
+  enabled: false
   hosts:
     - grafana.curtfamily.org
 image:

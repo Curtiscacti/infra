@@ -1,0 +1,12 @@
+replicaCount: 1
+adminUser: admin
+adminPassword:
+  existingSecret: grafana-admin
+  key: admin-password
+persistence:
+  enabled: true
+  size: 5Gi
+ingress:
+  enabled: true
+  hosts:
+    - grafana.curtfamily.org

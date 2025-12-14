@@ -1,0 +1,11 @@
+alertmanager:
+  enabled: true
+server:
+  replicas: 1
+  persistentVolume:
+    enabled: true
+    size: 5Gi
+  ingress:
+    enabled: true
+    hosts:
+      - prometheus.curtfamily.org

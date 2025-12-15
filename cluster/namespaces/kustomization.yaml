@@ -6,3 +6,4 @@ resources:
   - monitoring.yaml
   - argocd.yaml
   - kafka.yaml
+  - registry.yaml

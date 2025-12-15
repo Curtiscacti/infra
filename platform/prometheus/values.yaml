@@ -6,6 +6,10 @@ kube-prometheus-stack:
 
   prometheus:
     prometheusSpec:
+      image:
+        repository: quay.io/prometheus/prometheus
+        tag: latest
+        pullPolicy: IfNotPresent
       retention: 15d
       serviceMonitorSelectorNilUsesHelmValues: false
 

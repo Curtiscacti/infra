@@ -1,26 +1,26 @@
 kube-prometheus-stack:
   fullnameOverride: prometheus
 
+  # Disable CRDs if already installed
   crds:
     enabled: false
 
-  prometheus:
-    prometheusSpec:
-      image:
-        repository: quay.io/prometheus/prometheus
-        tag: latest
-        pullPolicy: IfNotPresent
-      retention: 15d
-      serviceMonitorSelectorNilUsesHelmValues: false
-
+  # Disable unnecessary components
   grafana:
     enabled: false
-
   alertmanager:
     enabled: false
 
+  # Prometheus configuration
+  prometheus:
+    prometheusSpec:
+      retention: 7d
+      # Disable persistent storage
+      storageSpec: {}
+      serviceMonitorSelectorNilUsesHelmValues: false
+
+  # Keep exporters enabled if needed
   nodeExporter:
     enabled: true
-
   kubeStateMetrics:
     enabled: true

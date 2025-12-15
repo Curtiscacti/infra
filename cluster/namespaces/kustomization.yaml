@@ -7,3 +7,4 @@ resources:
   - argocd.yaml
   - kafka.yaml
   - registry.yaml
+  - fantasy.yaml

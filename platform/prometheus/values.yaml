@@ -2,7 +2,7 @@ kube-prometheus-stack:
   fullnameOverride: prometheus
 
   crds:
-    enabled: true
+    enabled: false
 
   prometheus:
     prometheusSpec:

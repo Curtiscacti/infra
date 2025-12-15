@@ -1,22 +1,22 @@
 kube-prometheus-stack:
   fullnameOverride: prometheus
 
+  crds:
+    enabled: true
+
   prometheus:
     prometheusSpec:
       retention: 15d
       serviceMonitorSelectorNilUsesHelmValues: false
 
   grafana:
-    enabled: false   # 👈 IMPORTANT (you already have Grafana)
+    enabled: false
 
   alertmanager:
-    enabled: true
+    enabled: false
 
   nodeExporter:
     enabled: true
 
   kubeStateMetrics:
-    enabled: true
-
-  crds:
     enabled: true

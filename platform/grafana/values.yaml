@@ -1,19 +1,25 @@
 replicaCount: 1
+
 adminUser: admin
 adminPassword:
   existingSecret: grafana-admin
   key: admin-password
+
 ingress:
   enabled: false
-grafana:
-  persistence:
-    enabled: true
-    storageClassName: local-path
-    size: 5Gi
+
+persistence:
+  enabled: true
+  storageClassName: local-path
+  accessModes:
+    - ReadWriteOnce
+  size: 5Gi
+
 image:
   repository: grafana/grafana
   tag: latest
   pullPolicy: IfNotPresent
+
 datasources:
   datasources.yaml:
     apiVersion: 1

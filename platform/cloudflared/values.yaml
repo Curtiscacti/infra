@@ -15,6 +15,14 @@ ingress:
     service: argocd-server.argocd.svc.cluster.local
     port: 80
 
+  # Grafana
+  - hostname: grafana.curtfamily.org
+    service: grafana.monitoring.svc.cluster.local
+    port: 80
+
+  # default catch-all
+  - service: http_status:404
+
 server:
   # Accept HTTP internally (Cloudflare will handle HTTPS)
   extraArgs:

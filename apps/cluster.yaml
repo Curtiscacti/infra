@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-resources
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'git@github.com:Curtiscacti/infra.git'
+    targetRevision: main
+    path: cluster
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: kube-system  # cluster-level resources can be applied to any namespace
+  syncPolicy:
+    automated:
+      prune: true       # remove resources deleted in Git
+      selfHeal: true    # auto-correct drift

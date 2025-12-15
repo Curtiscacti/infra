@@ -7,14 +7,44 @@ spec:
   project: default
   source:
     repoURL: git@github.com:curtiscacti/infra.git
-    targetRevision: main
-    path: platform/grafana
+    targetRevision: main                          
+    path: platform/grafana                       
     helm:
-      valueFiles:
-        - values.yaml
+      values: |
+        replicaCount: 1
+
+        adminUser: admin
+        adminPassword:
+          existingSecret: grafana-admin
+          key: admin-password
+
+        ingress:
+          enabled: false
+
+        persistence:
+          enabled: true
+          storageClassName: local-path
+          accessModes:
+            - ReadWriteOnce
+          size: 5Gi
+
+        image:
+          repository: grafana/grafana
+          tag: latest
+          pullPolicy: IfNotPresent
+
+        datasources:
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+              - name: Prometheus
+                type: prometheus
+                access: proxy
+                url: http://prometheus-prometheus.monitoring.svc.cluster.local:9090
+                isDefault: true
   destination:
     server: https://kubernetes.default.svc
-    namespace: monitoring
+    namespace: grafana
   syncPolicy:
     automated:
       prune: true

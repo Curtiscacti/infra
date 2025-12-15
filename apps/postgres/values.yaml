@@ -1,0 +1,47 @@
+# apps/postgres/values.yaml
+
+# Postgres image settings
+image:
+  repository: postgres
+  tag: 18.1
+  pullPolicy: IfNotPresent
+
+global:
+  postgresql:
+    auth:
+      existingSecret: postgres-secret
+
+# Persistent volume settings
+persistence:
+  enabled: true
+  size: 5Gi
+  storageClass: local-path   # k3s default storage class
+  accessMode: ReadWriteOnce
+
+# Service settings
+service:
+  type: ClusterIP
+  port: 5432
+
+# Resources for the pod
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 250m
+  limits:
+    memory: 512Mi
+    cpu: 500m
+
+# Optional: expose via NodePort for local testing (not recommended for production)
+# service:
+#   type: NodePort
+#   nodePort: 30432
+
+# Optional: number of replicas for HA (requires StatefulSet + volumeClaimTemplates)
+replicaCount: 1
+
+# Enable basic liveness/readiness probes
+livenessProbe:
+  enabled: true
+readinessProbe:
+  enabled: true

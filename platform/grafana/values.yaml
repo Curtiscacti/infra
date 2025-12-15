@@ -8,10 +8,7 @@ ingress:
 grafana:
   persistence:
     enabled: true
-    type: pvc
     storageClassName: local-path
-    accessModes:
-      - ReadWriteOnce
     size: 5Gi
 image:
   repository: grafana/grafana

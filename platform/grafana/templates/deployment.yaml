@@ -28,3 +28,10 @@ spec:
                   key: {{ .Values.adminPassword.key }}
           ports:
             - containerPort: 3000
+          volumeMounts:
+            - name: grafana-storage
+              mountPath: /var/lib/grafana
+        volumes:
+        - name: grafana-storage
+          persistentVolumeClaim:
+            claimName: {{ include "grafana.fullname" . }}-pvc

@@ -1,15 +1,19 @@
-alertmanager:
-  enabled: true
-server:
-  image:
-    repository: prom/prometheus
-    tag: v2.50.0
-    pullPolicy: IfNotPresent
-  replicas: 1
-  persistentVolume:
+kube-prometheus-stack:
+  fullnameOverride: prometheus
+
+  prometheus:
+    prometheusSpec:
+      retention: 15d
+      serviceMonitorSelectorNilUsesHelmValues: false
+
+  grafana:
+    enabled: false   # 👈 IMPORTANT (you already have Grafana)
+
+  alertmanager:
     enabled: true
-    size: 5Gi
-  ingress:
+
+  nodeExporter:
     enabled: true
-    hosts:
-      - prometheus.curtfamily.org
+
+  kubeStateMetrics:
+    enabled: true

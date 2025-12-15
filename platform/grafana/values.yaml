@@ -8,12 +8,14 @@ adminPassword:
 ingress:
   enabled: false
 
-persistence:
-  enabled: true
-  storageClassName: local-path
-  accessModes:
-    - ReadWriteOnce
-  size: 5Gi
+volumeMounts:
+  - mountPath: /var/lib/grafana
+    name: grafana-storage
+
+volumes:
+  - name: grafana-storage
+    persistentVolumeClaim:
+      claimName: grafana-pvc
 
 image:
   repository: grafana/grafana

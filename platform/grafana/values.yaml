@@ -3,15 +3,16 @@ adminUser: admin
 adminPassword:
   existingSecret: grafana-admin
   key: admin-password
-persistence:
-  enabled: true
-  type: pvc
-  storageClassName: local-path
-  accessModes:
-    - ReadWriteOnce
-  size: 5Gi
 ingress:
   enabled: false
+grafana:
+  persistence:
+    enabled: true
+    type: pvc
+    storageClassName: local-path
+    accessModes:
+      - ReadWriteOnce
+    size: 5Gi
 image:
   repository: grafana/grafana
   tag: latest

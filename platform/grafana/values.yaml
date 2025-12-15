@@ -5,6 +5,10 @@ adminPassword:
   key: admin-password
 persistence:
   enabled: true
+  type: pvc
+  storageClassName: local-path
+  accessModes:
+    - ReadWriteOnce
   size: 5Gi
 ingress:
   enabled: false

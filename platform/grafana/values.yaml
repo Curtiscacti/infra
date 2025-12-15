@@ -12,3 +12,12 @@ image:
   repository: grafana/grafana
   tag: latest
   pullPolicy: IfNotPresent
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        access: proxy
+        url: http://prometheus-prometheus.monitoring.svc.cluster.local:9090
+        isDefault: true

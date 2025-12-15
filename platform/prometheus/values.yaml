@@ -1,6 +1,9 @@
 kube-prometheus-stack:
   fullnameOverride: prometheus
 
+  nodeExporter:
+    service:
+      port: 9101
   # Disable CRDs if already installed
   crds:
     enabled: false

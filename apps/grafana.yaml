@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: git@github.com:curtiscacti/infra.git
     targetRevision: main                          
-    path: platform/grafana                       
+    path: apps               
     helm:
       values: |
         replicaCount: 1

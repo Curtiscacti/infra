@@ -17,3 +17,6 @@ kube-prometheus-stack:
 
   kubeStateMetrics:
     enabled: true
+
+  crds:
+    enabled: true
